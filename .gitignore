@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # http static files
-public
+/public/
