@@ -4,6 +4,9 @@
     "start:prod": "node dist/index.js",
     "start:dev": "nodemon"
   },
+  "_moduleAliases": {
+    "@": "./dist"
+  },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.30",
@@ -13,6 +16,7 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
-    "express": "^4.19.1"
+    "express": "^4.19.1",
+    "module-alias": "^2.2.3"
   }
 }
