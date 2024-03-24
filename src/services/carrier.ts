@@ -29,7 +29,9 @@ export class CarrierService {
             .map(Number);
           resolve(ids);
         })
-        .catch(() => reject(new Error('Carrier API call failed.')));
+        .catch(() =>
+          reject(new Error(`Carrier API (${this.CARRIER_API_URL}) call failed.`))
+        );
     });
   }
 }
