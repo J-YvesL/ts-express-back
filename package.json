@@ -1,4 +1,6 @@
 {
+  "name": "ts-express-back",
+  "version": "v0.2.0",
   "scripts": {
     "build": "tsc",
     "start:prod": "cross-env NODE_ENV=production node dist/index.js",
