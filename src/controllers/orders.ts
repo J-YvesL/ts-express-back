@@ -1,11 +1,7 @@
-import { Order } from '@/models/order';
-import { createDeliveryRequest } from '@/services/carrier';
+import { Order, OrderRecord } from '@/models/order';
 
 export class OrdersController {
-  private static ordersDB: Record<
-    string,
-    { date: Date; items: { item_id: string; quantity: number }[] }
-  >;
+  private static ordersDB: Record<string, OrderRecord>;
 
   public static loadOrders(orders: Order[]): void {
     this.ordersDB = {};
@@ -15,17 +11,14 @@ export class OrdersController {
         items: order.items,
       };
     });
-    console.log(`${Object.keys(this.ordersDB).length} orders loaded.`);
+    console.log(`${this.dbLength} orders loaded.`);
   }
 
-  public static async processOrders(): Promise<boolean> {
-    try {
-      const trackingId = await createDeliveryRequest();
-      console.log(trackingId);
+  public static get orders(): Record<string, OrderRecord> {
+    return this.ordersDB;
+  }
 
-      return true;
-    } catch (e) {
-      throw new Error(`Unable to create delivery request: ${e}`);
-    }
+  public static get dbLength(): number {
+    return Object.keys(this.ordersDB).length;
   }
 }

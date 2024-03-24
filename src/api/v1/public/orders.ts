@@ -1,11 +1,11 @@
-import { OrdersController } from '@/controllers/orders';
 import { Router } from 'express';
+import { ParcelsController } from '@/controllers/parcels';
 
 const apiRoot = '/orders';
 const router = Router();
 
 router.get(`${apiRoot}/process`, (req, res) => {
-  OrdersController.processOrders()
+  ParcelsController.processOrders()
     .then(success => {
       return res.status(200).json(success);
     })

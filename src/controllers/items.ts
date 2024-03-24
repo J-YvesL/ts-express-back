@@ -1,7 +1,7 @@
-import { Item } from '@/models/item';
+import { Item, ItemRecord } from '@/models/item';
 
 export class ItemsController {
-  private static itemsDB: Record<string, { name: string; weight: number }>;
+  private static itemsDB: Record<string, ItemRecord>;
 
   public static loadItems(items: Item[]): void {
     ItemsController.itemsDB = {};
@@ -11,7 +11,7 @@ export class ItemsController {
         weight: parseFloat(item.weight),
       };
     });
-    console.log(`${Object.keys(this.itemsDB).length} items loaded.`);
+    console.log(`${this.dbLength} items loaded.`);
   }
 
   public static getItemWeight(itemId: string): number | undefined {
@@ -21,5 +21,9 @@ export class ItemsController {
     } else {
       return item.weight;
     }
+  }
+
+  public static get dbLength(): number {
+    return Object.keys(this.itemsDB).length;
   }
 }
