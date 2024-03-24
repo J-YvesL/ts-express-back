@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { ParcelsController } from '@/controllers/parcels';
 
-const apiRoot = '/orders';
+const apiRoot = '/parcels';
 const router = Router();
 
-router.get(`${apiRoot}/process`, (req, res) => {
-  ParcelsController.processOrders()
+router.get(`${apiRoot}/build`, (req, res) => {
+  ParcelsController.buildParcels()
     .then(success => {
       return res.status(200).json(success);
     })
