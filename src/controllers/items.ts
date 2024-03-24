@@ -8,7 +8,7 @@ export class ItemsController {
     items.forEach(item => {
       this.itemsDB[item.id] = {
         name: item.name,
-        weight: parseFloat(item.weight),
+        weight: parseFloat(item.weight) * 1000, // conver to grams to remove decimal part and use integer type
       };
     });
     console.log(`${this.dbLength} items loaded.`);
