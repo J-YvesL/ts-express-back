@@ -1,7 +1,12 @@
 import express from 'express';
 import setupExpress from './express';
+import { loadData } from './dataLoader';
 
 function startApp() {
+  // Load business data
+  loadData();
+
+  // Setup and start Express
   const app = express();
 
   setupExpress(app);
