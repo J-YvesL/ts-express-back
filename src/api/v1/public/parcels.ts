@@ -6,11 +6,12 @@ const router = Router();
 
 router.get(`${apiRoot}/build`, (req, res) => {
   ParcelsController.buildParcels()
-    .then(success => {
-      return res.status(200).json(success);
+    .then(parcels => {
+      return res.status(200).json(parcels);
     })
-    .catch(() => {
-      return res.sendStatus(500);
+    .catch(e => {
+      const err = e as Error;
+      return res.status(500).json(err.message);
     });
 });
 
