@@ -23,6 +23,10 @@ export class ItemsController {
     }
   }
 
+  public static get items(): Record<string, ItemRecord> {
+    return this.itemsDB;
+  }
+
   public static get dbLength(): number {
     return Object.keys(this.itemsDB).length;
   }
