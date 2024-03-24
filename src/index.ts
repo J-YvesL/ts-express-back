@@ -1,1 +1,3 @@
-console.log('Hello, TypeScript with Node.js!');
+import startApp from '@/boot';
+
+startApp();
