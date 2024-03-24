@@ -1,4 +1,3 @@
-import { ItemRecord } from '@/models/item';
 import { Order, OrderRecord } from '@/models/order';
 
 export class OrdersController {
