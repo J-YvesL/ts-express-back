@@ -11,6 +11,7 @@ export class ItemsController {
         weight: parseFloat(item.weight),
       };
     });
+    console.log(`${Object.keys(this.itemsDB).length} items loaded.`);
   }
 
   public static getItemWeight(itemId: string): number | undefined {
