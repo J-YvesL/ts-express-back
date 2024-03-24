@@ -1,11 +1,13 @@
 import { Router } from 'express';
+import { OrdersController } from '@/controllers/orders';
 import { ParcelsController } from '@/controllers/parcels';
 
 const apiRoot = '/parcels';
 const router = Router();
 
 router.get(`${apiRoot}/build`, (req, res) => {
-  ParcelsController.buildParcels()
+  const orders = OrdersController.orders;
+  ParcelsController.buildParcels(orders)
     .then(parcels => {
       return res.status(200).json(parcels);
     })

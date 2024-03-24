@@ -7,7 +7,9 @@ import { OrderRecord } from '@/models/order';
 export class ParcelsController {
   private static PARCEL_MAX_WEIGHT = 30000; // 30kg in grams
 
-  public static async buildParcels(): Promise<Parcel[]> {
+  public static async buildParcels(
+    orders: Record<string, OrderRecord>
+  ): Promise<Parcel[]> {
     if (ItemsController.dbLength === 0 || OrdersController.dbLength === 0) {
       throw new Error('Database is not initialized');
     }
@@ -15,7 +17,6 @@ export class ParcelsController {
       `Starting to build parcels for ${OrdersController.dbLength} orders...`
     );
     const parcels: Parcel[] = [];
-    const orders = OrdersController.orders;
     try {
       for (const [id, order] of Object.entries(orders)) {
         // Split order items into parcels.
@@ -65,6 +66,7 @@ export class ParcelsController {
             parcel.items.push({ item_id: heaviestItem.id, quantity: 1 });
           }
           parcel.weight += heaviestItem.weight;
+          break;
         }
       }
       // If no suitable parcel could be found, then create a new Parcel
