@@ -1,7 +1,7 @@
 export interface Parcel {
-  order_id: string;
+  orderId: string;
   items: { item_id: string; quantity: number }[];
   weight: number;
-  tracking_id?: number;
-  palette_number?: number;
+  trackingId?: number;
+  paletteNumber?: number;
 }

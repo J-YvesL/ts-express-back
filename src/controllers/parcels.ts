@@ -25,8 +25,12 @@ export class ParcelsController {
         parcels.length
       );
       trackingIds.forEach((trackingId, index) => {
-        parcels[index].tracking_id = trackingId;
+        parcels[index].trackingId = trackingId;
       });
+      // Assign palette
+      for (const [index, parcel] of parcels.entries()) {
+        parcel.paletteNumber = Math.floor(index / 15) + 1;
+      }
       console.log('Done building parcels.');
       return parcels;
     } catch (e) {
@@ -35,7 +39,7 @@ export class ParcelsController {
   }
 
   private static processOrder(id: string, order: OrderRecord): Parcel[] {
-    const parcel: Parcel = { order_id: id, items: [], weight: 0 };
+    const parcel: Parcel = { orderId: id, items: [], weight: 0 };
     return [parcel];
   }
 }
