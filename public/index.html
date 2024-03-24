@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Application SPA</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bienvenue dans Mon Application SPA</h1>
+    <p>
+      Ceci est une page d'atterrissage simple en attendant le build de
+      l'application SPA.
+    </p>
+    <p>Mode: <span id="envMode">chargement...</span></p>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        fetch('/api/v1/env')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('envMode').textContent = data.env;
+          })
+          .catch(error =>
+            console.error(
+              "Erreur lors de la récupération de l'environnement:",
+              error
+            )
+          );
+      });
+    </script>
+  </body>
+</html>
