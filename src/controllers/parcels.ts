@@ -7,6 +7,11 @@ import { OrderRecord } from '@/models/order';
 export class ParcelsController {
   private static PARCEL_MAX_WEIGHT = 30000; // 30kg in grams
 
+  /**
+   * Prepare parcels for drop operation
+   * @param orders The orders to deliver
+   * @returns Prepared parcels
+   */
   public static async buildParcels(
     orders: Record<string, OrderRecord>
   ): Promise<Parcel[]> {
