@@ -34,7 +34,9 @@ export class ParcelsController {
       for (const [index, parcel] of parcels.entries()) {
         parcel.paletteNumber = Math.floor(index / 15) + 1;
       }
-      console.log('Done building parcels.');
+      // Compute total profit
+      const profit = this.computeProfit(parcels);
+      console.log(`Done building parcels. Total profit: ${profit}€`);
       return parcels;
     } catch (e) {
       throw new Error(`Unable to create delivery request: ${e}`);
@@ -108,5 +110,36 @@ export class ParcelsController {
     }
     itemsToPack.sort((a, b) => b.weight - a.weight);
     return itemsToPack;
+  }
+
+  /**
+   * Compute profit based on business rules :
+   * From 0 to 1kg = 1€
+   * From 1kg to 5kg = 2€
+   * From 5kg to 10kg = 3€
+   * From 10kg to 20kg = 5€
+   * More than 20kg = 10€
+   * @param parcels
+   */
+  private static computeProfit(parcels: Parcel[]) {
+    let totalProfit = 0;
+
+    parcels.forEach(parcel => {
+      const weightInKg = parcel.weight / 1000;
+
+      if (weightInKg <= 1) {
+        totalProfit += 1;
+      } else if (weightInKg > 1 && weightInKg <= 5) {
+        totalProfit += 2;
+      } else if (weightInKg > 5 && weightInKg <= 10) {
+        totalProfit += 3;
+      } else if (weightInKg > 10 && weightInKg <= 20) {
+        totalProfit += 5;
+      } else if (weightInKg > 20) {
+        totalProfit += 10;
+      }
+    });
+
+    return totalProfit;
   }
 }
