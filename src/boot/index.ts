@@ -2,6 +2,7 @@ import express from 'express';
 import setupExpress from './express';
 
 function startApp() {
+  // Setup and start Express
   const app = express();
 
   setupExpress(app);

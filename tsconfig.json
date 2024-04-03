@@ -2,15 +2,14 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "CommonJS",
+    "rootDir": "./",
     "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
-    "esModuleInterop": true,
+    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+    },
+    "esModuleInterop": true
+  }
 }
